@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto Bilingüe - Cafetería Orgánica Granados</title>
+  <style>
+    :root{
+      --green:#2f5d3a;
+      --green2:#6f8f72;
+      --cream:#f7f1e6;
+      --coffee:#6b4a35;
+      --gold:#c79a55;
+      --white:#ffffff;
+      --text:#28312a;
+      --soft:#eef3ec;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Segoe UI",Arial,sans-serif;
+      color:var(--text);
+      background:var(--cream);
+      line-height:1.6;
+    }
+    header{
+      min-height:78vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:60px 20px;
+      color:white;
+      background:
+        linear-gradient(rgba(25,55,32,.74),rgba(25,55,32,.74)),
+        radial-gradient(circle at top right,#799b76,#2f5d3a 60%,#244a2d);
+    }
+    .hero{max-width:950px}
+    .badge{
+      display:inline-block;
+      padding:8px 16px;
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:30px;
+      margin-bottom:18px;
+      font-size:.92rem;
+      background:rgba(255,255,255,.1);
+    }
+    h1{font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.05;margin:0 0 16px}
+    header p{font-size:1.08rem;max-width:800px;margin:8px auto}
+    .eng{opacity:.88;font-style:italic}
+    nav{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.96);
+      box-shadow:0 3px 15px rgba(0,0,0,.08);
+      padding:12px 16px;
+      text-align:center;
+    }
+    nav a{
+      color:var(--green);
+      text-decoration:none;
+      font-weight:700;
+      margin:5px 10px;
+      display:inline-block;
+      font-size:.95rem;
+    }
+    section{padding:70px 20px}
+    .container{max-width:1100px;margin:auto}
+    h2{
+      color:var(--green);
+      font-size:2rem;
+      margin:0 0 6px;
+    }
+    .subtitle-en{
+      color:var(--coffee);
+      font-size:1.15rem;
+      font-style:italic;
+      margin:0 0 18px;
+    }
+    .lead{max-width:850px;margin:0 0 12px;color:#59635c}
+    .lead-en{max-width:850px;margin:0 0 35px;color:#707871;font-style:italic}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:20px;
+    }
+    .card{
+      background:white;
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 10px 28px rgba(46,74,52,.09);
+      border:1px solid rgba(47,93,58,.08);
+    }
+    .card h3{color:var(--coffee);margin:0 0 2px}
+    .card h4{color:var(--green2);margin:0 0 12px;font-weight:600;font-style:italic}
+    .number{
+      width:45px;height:45px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--green);color:white;font-weight:800;
+      margin-bottom:15px;
+    }
+    .alt{background:var(--soft)}
+    .timeline{border-left:4px solid var(--green2);padding-left:25px}
+    .step{margin:0 0 30px;position:relative}
+    .step:before{
+      content:"";position:absolute;left:-34px;top:7px;
+      width:14px;height:14px;border-radius:50%;background:var(--gold);
+      border:3px solid var(--soft);
+    }
+    .step h3{margin-bottom:2px;color:var(--coffee)}
+    .step h4{margin:0 0 8px;color:var(--green2);font-style:italic;font-weight:600}
+    .phrase-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+      gap:16px;
+    }
+    .phrase{
+      background:white;
+      border-radius:16px;
+      padding:18px;
+      border-left:5px solid var(--green);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .en{font-size:1.08rem;font-weight:800;color:var(--green);margin-bottom:4px}
+    .es{color:#667069;margin-bottom:12px}
+    button{
+      border:none;
+      background:var(--coffee);
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    button:hover{filter:brightness(1.08)}
+    .tip{
+      margin-top:28px;
+      padding:18px 20px;
+      border-radius:14px;
+      background:#fff7dc;
+      border-left:5px solid var(--gold);
+    }
+    .media-placeholder{
+      border:2px dashed #9cad9f;
+      min-height:180px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:25px;
+      color:#667069;
+      background:rgba(255,255,255,.55);
+    }
+    .label-demo{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:white;
+      min-height:180px;
+      border-radius:15px;
+      border:1px solid #ded7c8;
+      text-align:center;
+      padding:20px;
+    }
+    .label-demo b{font-size:1.25rem;color:var(--green)}
+    .section-tag{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--gold);
+      font-weight:800;
+      margin-bottom:5px;
+    }
+    footer{
+      background:#223c28;color:white;
+      text-align:center;padding:35px 20px;
+    }
+    .small{font-size:.9rem;opacity:.8}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="badge">Proyecto de práctica profesional · Professional Practice Project</div>
+    <h1>Fortalecimiento de la experiencia de servicio</h1>
+    <p class="eng"><strong>Strengthening the Customer Service Experience</strong></p>
+    <p><strong>Cafetería Orgánica Granados</strong></p>
+    <p>Una propuesta para mejorar la atención al visitante, fortalecer la comunicación en inglés y apoyar la presentación y promoción de los productos del emprendimiento.</p>
+    <p class="eng">A proposal to improve customer service, strengthen English communication, and support product presentation and promotion.</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#proyecto">Proyecto / Project</a>
+  <a href="#acciones">Acciones / Actions</a>
+  <a href="#ingles">Inglés / English</a>
+  <a href="#videos">Videos</a>
+  <a href="#etiquetas">Etiquetas / Labels</a>
+  <a href="#resultados">Resultados / Results</a>
+</nav>
+
+<section id="proyecto">
+  <div class="container">
+    <div class="section-tag">Introducción · Introduction</div>
+    <h2>Sobre el proyecto</h2>
+    <div class="subtitle-en">About the Project</div>
+
+    <p class="lead">Durante la práctica se identificaron oportunidades de mejora relacionadas con la atención al cliente, la comunicación con visitantes extranjeros, la promoción audiovisual y la presentación de productos.</p>
+    <p class="lead-en">During the professional practice, several opportunities for improvement were identified in customer service, communication with foreign visitors, audiovisual promotion, and product presentation.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="number">1</div>
+        <h3>Atención al cliente</h3>
+        <h4>Customer Service</h4>
+        <p>Fortalecer la forma de recibir, orientar y atender a quienes visitan la cafetería.</p>
+        <p class="eng">Strengthen the way customers are welcomed, guided, and served.</p>
+      </div>
+      <div class="card">
+        <div class="number">2</div>
+        <h3>Inglés básico</h3>
+        <h4>Basic English</h4>
+        <p>Facilitar expresiones útiles para recibir clientes y brindar un servicio básico en mesa.</p>
+        <p class="eng">Provide useful expressions to welcome customers and offer basic table service.</p>
+      </div>
+      <div class="card">
+        <div class="number">3</div>
+        <h3>Promoción</h3>
+        <h4>Promotion</h4>
+        <p>Apoyar la creación de contenido audiovisual para mostrar la experiencia y los productos.</p>
+        <p class="eng">Support the creation of audiovisual content to showcase the experience and products.</p>
+      </div>
+      <div class="card">
+        <div class="number">4</div>
+        <h3>Presentación de productos</h3>
+        <h4>Product Presentation</h4>
+        <p>Diseñar etiquetas que permitan identificar mejor los productos y sus precios.</p>
+        <p class="eng">Design labels to improve product identification and price visibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="acciones" class="alt">
+  <div class="container">
+    <div class="section-tag">Proceso · Process</div>
+    <h2>Desarrollo de las acciones</h2>
+    <div class="subtitle-en">Development of the Actions</div>
+
+    <p class="lead">El trabajo se desarrolló de manera práctica y progresiva, tomando en cuenta las necesidades observadas en el establecimiento.</p>
+    <p class="lead-en">The work was carried out in a practical and progressive way, taking into account the needs observed at the establishment.</p>
+
+    <div class="timeline">
+      <div class="step">
+        <h3>Diagnóstico inicial</h3>
+        <h4>Initial Assessment</h4>
+        <p>Observación de la dinámica del servicio, la atención al visitante y la presentación de los productos.</p>
+        <p class="eng">Observation of service dynamics, customer interaction, and product presentation.</p>
+      </div>
+      <div class="step">
+        <h3>Material de inglés para atención</h3>
+        <h4>English Customer Service Material</h4>
+        <p>Selección de vocabulario y frases sencillas relacionadas con bienvenida, toma de órdenes, consultas y despedida.</p>
+        <p class="eng">Selection of simple vocabulary and phrases for welcoming customers, taking orders, answering questions, and saying goodbye.</p>
+      </div>
+      <div class="step">
+        <h3>Contenido audiovisual</h3>
+        <h4>Audiovisual Content</h4>
+        <p>Elaboración de videos como apoyo a la promoción de la cafetería, sus productos y su experiencia.</p>
+        <p class="eng">Creation of videos to support the promotion of the café, its products, and the visitor experience.</p>
+      </div>
+      <div class="step">
+        <h3>Diseño de etiquetas</h3>
+        <h4>Label Design</h4>
+        <p>Creación de etiquetas para mejorar la identificación y presentación de los productos disponibles en la tienda.</p>
+        <p class="eng">Creation of labels to improve product identification and presentation in the store.</p>
+      </div>
+      <div class="step">
+        <h3>Herramienta digital</h3>
+        <h4>Digital Tool</h4>
+        <p>Integración del material desarrollado en una página web sencilla para facilitar su consulta y uso.</p>
+        <p class="eng">Integration of the developed materials into a simple website for easy access and use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ingles">
+  <div class="container">
+    <div class="section-tag">Capacitación · Training</div>
+    <h2>Inglés básico para atención al cliente</h2>
+    <div class="subtitle-en">Basic English for Customer Service</div>
+
+    <p class="lead">Presiona <strong>“Escuchar / Listen”</strong> para oír la pronunciación en inglés.</p>
+    <p class="lead-en">Press <strong>“Escuchar / Listen”</strong> to hear the English pronunciation.</p>
+
+    <div class="phrase-grid" id="phrases"></div>
+
+    <div class="tip">
+      <strong>Sugerencia de práctica / Practice Tip:</strong><br>
+      Escuchar cada frase, repetirla dos o tres veces y practicar pequeñas situaciones de atención entre compañeras.<br>
+      <span class="eng">Listen to each phrase, repeat it two or three times, and practice short customer service situations with a partner.</span>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="alt">
+  <div class="container">
+    <div class="section-tag">Promoción · Promotion</div>
+    <h2>Contenido audiovisual realizado</h2>
+    <div class="subtitle-en">Audiovisual Content Created</div>
+
+    <p class="lead">Este espacio puede utilizarse para mostrar los videos creados durante la práctica y explicar brevemente el objetivo de cada uno.</p>
+    <p class="lead-en">This section can be used to display the videos created during the professional practice and briefly explain the purpose of each one.</p>
+
+    <div class="grid">
+      <div class="media-placeholder">
+        <div><strong>Video 1</strong><br>Presentación de la cafetería<br><span class="eng">Café Introduction</span><br><small>Agregar aquí enlace, código QR o video.</small></div>
+      </div>
+      <div class="media-placeholder">
+        <div><strong>Video 2</strong><br>Productos y experiencia<br><span class="eng">Products and Experience</span><br><small>Agregar aquí enlace, código QR o video.</small></div>
+      </div>
+      <div class="media-placeholder">
+        <div><strong>Video 3</strong><br>Contenido promocional<br><span class="eng">Promotional Content</span><br><small>Agregar aquí enlace, código QR o video.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="etiquetas">
+  <div class="container">
+    <div class="section-tag">Diseño · Design</div>
+    <h2>Mejora en la presentación de productos</h2>
+    <div class="subtitle-en">Improvement in Product Presentation</div>
+
+    <p class="lead">Las etiquetas permiten presentar la información de manera más ordenada y facilitar que el visitante identifique el producto y su precio.</p>
+    <p class="lead-en">Labels help organize product information and make it easier for visitors to identify products and prices.</p>
+
+    <div class="grid">
+      <div class="label-demo"><b>Producto / Product</b><span>Descripción / Description</span><strong>₡ Precio / Price</strong></div>
+      <div class="label-demo"><b>Producto / Product</b><span>Descripción / Description</span><strong>₡ Precio / Price</strong></div>
+      <div class="label-demo"><b>Producto / Product</b><span>Descripción / Description</span><strong>₡ Precio / Price</strong></div>
+    </div>
+
+    <div class="tip">
+      Aquí se pueden sustituir estos ejemplos por fotografías de las etiquetas reales diseñadas durante la práctica.<br>
+      <span class="eng">These examples can be replaced with photographs of the actual labels designed during the professional practice.</span>
+    </div>
+  </div>
+</section>
+
+<section id="resultados" class="alt">
+  <div class="container">
+    <div class="section-tag">Impacto · Impact</div>
+    <h2>Aportes esperados del proyecto</h2>
+    <div class="subtitle-en">Expected Contributions of the Project</div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Servicio más preparado</h3>
+        <h4>Better Prepared Service</h4>
+        <p>Mayor seguridad al momento de recibir y atender visitantes, incluyendo clientes de habla inglesa.</p>
+        <p class="eng">Greater confidence when welcoming and serving visitors, including English-speaking customers.</p>
+      </div>
+      <div class="card">
+        <h3>Material de consulta</h3>
+        <h4>Reference Material</h4>
+        <p>Las frases quedan disponibles en un recurso digital que puede repasarse cuando sea necesario.</p>
+        <p class="eng">The phrases remain available in a digital resource that can be reviewed whenever needed.</p>
+      </div>
+      <div class="card">
+        <h3>Mejor comunicación visual</h3>
+        <h4>Improved Visual Communication</h4>
+        <p>Las etiquetas contribuyen a una presentación más clara y organizada de los productos.</p>
+        <p class="eng">Labels contribute to a clearer and more organized presentation of products.</p>
+      </div>
+      <div class="card">
+        <h3>Mayor apoyo promocional</h3>
+        <h4>Stronger Promotional Support</h4>
+        <p>Los videos pueden utilizarse como contenido para fortalecer la presencia digital del emprendimiento.</p>
+        <p class="eng">The videos can be used as content to strengthen the business's digital presence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Cafetería Orgánica Granados</strong>
+  <div>Proyecto desarrollado como parte de la práctica profesional.</div>
+  <div class="eng">Project developed as part of the professional practice.</div>
+  <div class="small">Página bilingüe e interactiva · Bilingual and interactive website</div>
+</footer>
+
+<script>
+const phrases = [
+  ["Good morning! Welcome.", "¡Buenos días! Bienvenido/a."],
+  ["Good afternoon! Welcome.", "¡Buenas tardes! Bienvenido/a."],
+  ["How many people?", "¿Para cuántas personas?"],
+  ["Please, have a seat.", "Por favor, tome asiento."],
+  ["Here is the menu.", "Aquí está el menú."],
+  ["Are you ready to order?", "¿Está listo/a para ordenar?"],
+  ["What would you like to drink?", "¿Qué le gustaría tomar?"],
+  ["What would you like to eat?", "¿Qué le gustaría comer?"],
+  ["Would you like coffee?", "¿Le gustaría café?"],
+  ["Anything else?", "¿Algo más?"],
+  ["One moment, please.", "Un momento, por favor."],
+  ["Your order will be ready soon.", "Su orden estará lista pronto."],
+  ["Here is your order.", "Aquí está su orden."],
+  ["Enjoy your meal!", "¡Buen provecho!"],
+  ["Would you like anything else?", "¿Desea algo más?"],
+  ["Would you like the bill?", "¿Desea la cuenta?"],
+  ["Here is the bill.", "Aquí está la cuenta."],
+  ["Thank you very much.", "Muchas gracias."],
+  ["Have a nice day!", "¡Que tenga un bonito día!"],
+  ["We hope to see you again.", "Esperamos verle nuevamente."]
+];
+
+const box = document.getElementById("phrases");
+
+phrases.forEach(([en,es])=>{
+  const div=document.createElement("div");
+  div.className="phrase";
+  div.innerHTML=`<div class="en">${en}</div>
+  <div class="es">${es}</div>
+  <button onclick='speak(${JSON.stringify(en)})'>🔊 Escuchar / Listen</button>`;
+  box.appendChild(div);
+});
+
+function speak(text){
+  if(!("speechSynthesis" in window)){
+    alert("Este navegador no permite reproducir voz automáticamente. / This browser does not support speech playback.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  u.rate = 0.82;
+  u.pitch = 1;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+  if(preferred) u.voice = preferred;
+  window.speechSynthesis.speak(u);
+}
+</script>
+
+</body>
+</html>
